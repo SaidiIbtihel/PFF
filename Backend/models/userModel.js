@@ -1,13 +1,12 @@
-const { string } = require("i/lib/util");
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     fullname: {
       type: String,
       required: [true, "Please add your name"],
     },
-    Phone: {
+    phone: {
       type: Number,
       required: [true, "Please add your phone"],
     },
@@ -23,9 +22,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add your email"],
     },
-    passeword: {
+    password: {
       type: String,
       required: [true, "Please add your passeword"],
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   {
