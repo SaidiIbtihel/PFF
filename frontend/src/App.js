@@ -5,6 +5,7 @@ import { RegisterAdmin } from "./pages/admin/RegisterAdmin";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import { Contact } from "./pages/user/Contact";
+import DashboardAdmin from "./pages/admin/DashboardAdmin";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
             <Route path="/dashboardUser" element={<DashboardUser />} />
             <Route path="/registerAdmin" element={<RegisterAdmin />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
           </Routes>
         </div>
       </Router>
