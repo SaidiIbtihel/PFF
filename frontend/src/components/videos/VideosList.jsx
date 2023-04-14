@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import VideosItem from "./VideosItem";
 
 const Videos = () => {
-  const { videos } = useSelector((state) => state.videos);
+  const { videos } = useSelector((state) => state.Videos);
   if (videos.length === 0) {
     return <h3 className="text-center">You have not set any videos</h3>;
   }

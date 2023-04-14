@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteVideo, unsetCurrent } from "../features/videos/videoSlice";
+import { deleteVideo, unsetCurrent } from "../../features/videos/videoSlice";
 
-const videoItem = ({ video }) => {
+const VideoItem = ({ video }) => {
   const dispatch = useDispatch();
   const { URLvd, vdName, vdDescription, createdAt } = video;
 
@@ -22,9 +22,7 @@ const videoItem = ({ video }) => {
             {new Date(createdAt).toLocaleTimeString()}
           </small>
         </h5>
-        <span style={{ float: "right" }}>
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </span>
+
         <p className="card-text">{vdName && <span>{vdName}</span>}</p>
         <p className="card-text">{URLvd && <span>{URLvd}</span>}</p>
         <p className="card-text">
@@ -39,4 +37,4 @@ const videoItem = ({ video }) => {
   );
 };
 
-export default videoItem;
+export default VideoItem;

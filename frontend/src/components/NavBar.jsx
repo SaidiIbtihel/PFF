@@ -7,22 +7,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authUser/authUserSlice";
 
 function Navbar() {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authUser);
 
-  // const onLogout = () => {
-  //   dispatch(logout());
-  //   dispatch(reset());
-  //   toast.success("Logged out successfully");
-  //   navigate("/");
-  // };
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    toast.success("Logged out successfully");
+    navigate("/login");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          logo
         </a>
         <button
           className="navbar-toggler"
@@ -37,54 +37,76 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dashboardUser">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item" style={{ float: "right" }}>
+                  <button className="btn btn-primary" onClick={onLogout}>
+                    {" "}
+                    <FaSignOutAlt />
+                    Logout
+                  </button>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    To choose
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <Link className="nav-link" to="/videos">
+                        Videos
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="nav-link" to="/tales">
+                        Tales
+                      </Link>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Games
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/registerUser">
+                    <FaUser /> Register
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    <FaSignInAlt /> Login
+                  </Link>
+                </li>
+              </>
+            )}
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="#">
+              <Link className="nav-link" to="/aboutUs">
                 AboutUs
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="#">
+              <Link className="nav-link" to="/contact">
                 ContactUs
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                To choose
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Videos
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Tales
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Games
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="#">
-                LogOut
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

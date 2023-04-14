@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DashboardAdmin() {
+  //videos
   const [video, setVideo] = useState({
     vdName: " ",
     URLvd: " ",
@@ -46,11 +47,11 @@ export default function DashboardAdmin() {
       });
     }
   }, [current]);
-
+  //Tales
   const [tale, setTale] = useState({
-    vdName: " ",
-    URLvd: " ",
-    vdDescription: " ",
+    taleName: " ",
+    URLtale: " ",
+    taleDescription: " ",
   });
   const { taleName, URLtale, taleDescription } = tale;
   const { currentTale } = useSelector((state) => state.Tales);
@@ -61,7 +62,7 @@ export default function DashboardAdmin() {
   const onSubmitTale = (e) => {
     e.preventDefault();
     if (current === null) {
-      dispatch(createTale({ taleName, URLtale, taleDescription }));
+      dispatchTale(createTale({ taleName, URLtale, taleDescription }));
       setTale({
         taleName: " ",
         URLTale: " ",
@@ -130,7 +131,7 @@ export default function DashboardAdmin() {
 
       {/* add tale form */}
 
-      <section className="vh-100 gradient-custom">
+      <section onSubmit={onSubmitTale} className="vh-100 gradient-custom">
         <div className="container py-5 h-100">
           <div className="row justify-content-center align-items-center h-100">
             <div className="col-12 col-lg-9 col-xl-7">
@@ -161,13 +162,16 @@ export default function DashboardAdmin() {
                         <div className="form-outline">
                           <input
                             type="text"
-                            id="description"
+                            id="taleDescription"
                             className="form-control form-control-lg"
                             onChangeTale={onChangeTale}
                             name="taleDescription"
                             value={taleDescription}
                           />
-                          <label className="form-label" htmlFor="description">
+                          <label
+                            className="form-label"
+                            htmlFor="taleDescription"
+                          >
                             Summary
                           </label>
                         </div>
